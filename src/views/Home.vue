@@ -33,11 +33,7 @@
             <v-col class="text-center">
               <v-tooltip left>
                 <template v-slot:activator="{ on }">
-                  <v-btn :href="source"
-                          icon
-                          large
-                          target="_blank"
-                          v-on="on">
+                  <v-btn icon large @click="toSignIn()" v-on="on">
                     <v-icon large>mdi-code-tags</v-icon>
                   </v-btn>
                 </template>
@@ -56,10 +52,15 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import router from '@/router';
 
 @Component
 export default class Home extends Vue {
   drawer = null;
-  source = '/';
+
+  toSignIn() {
+    router.replace('/sign-in');
+  }
+
 }
 </script>

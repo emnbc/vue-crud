@@ -12,17 +12,21 @@
                     <v-text-field label="Login"
                                   name="login"
                                   type="text"
+                                  v-model="auth.username"
                                   autocomplete="off"></v-text-field>
                     <v-text-field id="password"
                                   label="Password"
                                   name="password"
                                   type="password"
+                                  v-model="auth.password"
                                   autocomplete="off"></v-text-field>
                   </v-form>
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn block color="primary">Login</v-btn>
+                  <v-btn @click="login()"
+                          block
+                          color="primary">Login</v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>
@@ -35,9 +39,36 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import router from '@/router';
+import request from '@/utils/request';
 
 @Component
 export default class SignIn extends Vue {
+
+  auth: any = {
+    username: null,
+    password: null
+  };
+  loadingLogin = false;
+  loginError: string | null = null;
+
+  login() {
+    this.loadingLogin = true;
+    this.loginError = null;
+
+    request({
+      url: '/auth/login',
+      method: 'post',
+      data: this.auth
+    }).then((res) => {
+      const token = res.data['accessToken'];
+      this.loadingLogin = false;
+      router.replace(`/?token=${token}`);
+    }).catch(() => {
+      this.loadingLogin = false;
+      this.loginError = 'Ошибка авторизации';
+    });
+    }
  
 }
 </script>
