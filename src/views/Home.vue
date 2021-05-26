@@ -22,7 +22,7 @@
         </v-list>
       </v-navigation-drawer>
   
-      <v-app-bar app color="indigo" dark>
+      <v-app-bar app color="blue-grey" dark>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Application</v-toolbar-title>
       </v-app-bar>
@@ -47,7 +47,7 @@
           </v-row>
         </v-container>
       </v-main>
-      <v-footer color="indigo" app>
+      <v-footer color="blue-grey" app>
         <span class="white--text">&copy; {{ new Date().getFullYear() }}</span>
       </v-footer>
     </v-app>
