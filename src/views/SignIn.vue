@@ -41,6 +41,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import router from '@/router';
 import request from '@/utils/request';
+import { setToken } from '@/utils/auth';
 
 @Component
 export default class SignIn extends Vue {
@@ -63,7 +64,10 @@ export default class SignIn extends Vue {
     }).then((res) => {
       const token = res.data['accessToken'];
       this.loadingLogin = false;
-      router.replace(`/?token=${token}`);
+      if (token) {
+        setToken(token);
+        router.replace('/');
+      }
     }).catch(() => {
       this.loadingLogin = false;
       this.loginError = 'Ошибка авторизации';

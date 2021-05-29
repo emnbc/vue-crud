@@ -1,15 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { IAuthState } from './modules/auth'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+export interface IRootState {
+  auth: IAuthState;
+}
+
+export default new Vuex.Store<IRootState>({});
