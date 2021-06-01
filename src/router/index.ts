@@ -1,16 +1,25 @@
 import { securityGuard } from '@/utils/auth'
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
+import Main from '../views/Main.vue'
+import Users from '../views/inner-views/Users.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Main',
     meta: { authRequired: true },
-    component: Home
+    component: Main,
+    redirect: '/users',
+    children: [
+      {
+        path: 'users',
+        component: Users,
+        meta: {},
+    },
+    ]
   },
   {
     path: '/about',

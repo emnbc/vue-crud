@@ -28,19 +28,10 @@
       </v-app-bar>
   
       <v-main>
-        <v-container class="fill-height" fluid>
-          <v-row align="center" justify="center">
-            <v-col class="text-center">
-              <v-tooltip left>
-                <template v-slot:activator="{ on }">
-                  <v-btn icon large @click="toSignIn()" v-on="on">
-                    <v-icon large>mdi-code-tags</v-icon>
-                  </v-btn>
-                </template>
-                <span>Source</span>
-              </v-tooltip>
-            </v-col>
-          </v-row>
+        <v-container fluid>
+
+          <router-view />
+          
         </v-container>
       </v-main>
       <v-footer color="blue-grey" app>
@@ -55,7 +46,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import router from '@/router';
 
 @Component
-export default class Home extends Vue {
+export default class Main extends Vue {
   drawer = null;
 
   toSignIn() {
