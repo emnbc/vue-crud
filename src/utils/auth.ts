@@ -6,7 +6,7 @@ import { NavigationGuardNext, Route } from 'vue-router';
 const TOKEN = 'vue-crud-token';
 
 export const setToken = (token: string) => {
-  store.commit('SET_TOKEN', token);
+  store.commit('auth/SET_TOKEN', token);
   localStorage.setItem(TOKEN, token);
 }
 
@@ -19,7 +19,7 @@ export const getToken = (): string | null => {
 }
 
 export const removeToken = () => {
-  store.commit('CLEAR_AUTH');
+  store.commit('auth/CLEAR_AUTH');
   localStorage.removeItem(TOKEN);
 }
 
@@ -39,7 +39,7 @@ export const securityGuard = async (to: Route, from: Route, next: NavigationGuar
       const token = getToken();
 
       if (token) {
-        await store.dispatch('FETCH_USER_DATA');
+        await store.dispatch('auth/FETCH_USER_DATA');
 
         if (AuthModule.isAuthenticated) {
           next({replace: true});

@@ -8,7 +8,7 @@ export interface IAuthState {
   user: User;
 }
 
-@Module({dynamic: true, store, name: 'auth'})
+@Module({dynamic: true, store, name: 'auth', namespaced: true})
 class Auth extends VuexModule implements IAuthState {
 
   token = '';
