@@ -29,11 +29,6 @@ class Users extends VuexModule implements IUsersState {
     return { usersData: response.data, totalCount: Number(response.headers['x-total-count']) };
   }
 
-  // @Mutation
-  // SET_CURRENT_PAGE(page: number) {
-  //   this.pagination.page = page;
-  // }
-
   @Mutation
   SET_PAGINATION(pagination: DataOptions) {
     this.pagination.page = pagination.page;
