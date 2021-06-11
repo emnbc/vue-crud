@@ -15,17 +15,17 @@ const routes: Array<RouteConfig> = [
     redirect: '/users',
     children: [
       {
-        path: 'users',
+        path: '/users',
         component: Users,
-        meta: {},
-    },
+        meta: { authRequired: true },
+      },
+      {
+        path: '/about',
+        name: 'About',
+        meta: { authRequired: true },
+        component: () => import(/* webpackChunkName: "about" */ '../views/inner-views/About.vue')
+      },
     ]
-  },
-  {
-    path: '/about',
-    name: 'About',
-    meta: { authRequired: true },
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
     path: '/sign-in',

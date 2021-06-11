@@ -3,20 +3,12 @@
     <v-app id="inspire">
       <v-navigation-drawer v-model="drawer" app clipped>
         <v-list dense>
-          <v-list-item link>
+          <v-list-item :to="item.link" v-for="(item, i) in itemList" :key="i" link>
             <v-list-item-action>
-              <v-icon>mdi-view-dashboard</v-icon>
+              <v-icon>{{item.icon}}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>Dashboard</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-action>
-              <v-icon>mdi-cog</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Settings</v-list-item-title>
+              <v-list-item-title>{{item.text}}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -55,6 +47,11 @@ import router from '@/router';
 export default class Main extends Vue {
   drawer = null;
   logOut = logOut;
+
+  itemList = [
+    { icon: 'mdi-view-dashboard', text: 'Home', link: '/users'},
+    { icon: 'mdi-cog', text: 'About', link: '/about'},
+  ];
 
   created () {
     this.$vuetify.theme.dark = false;
