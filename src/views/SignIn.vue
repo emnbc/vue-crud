@@ -6,9 +6,10 @@
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="4">
               <v-card>
-                <v-card-title class="headline">Login</v-card-title>
-                <v-card-text>
-                  <v-form>
+                <v-form @submit.prevent="login">
+                  <v-card-title class="headline">Login</v-card-title>
+                  <v-card-text>
+                    
                     <v-text-field label="Login"
                                   name="login"
                                   type="text"
@@ -20,14 +21,15 @@
                                   type="password"
                                   v-model="auth.password"
                                   autocomplete="off"></v-text-field>
-                  </v-form>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn @click="login()"
-                          block
-                          color="primary">Login</v-btn>
-                </v-card-actions>
+                    
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn  block
+                            type="submit"
+                            color="primary">Login</v-btn>
+                  </v-card-actions>
+                </v-form>
               </v-card>
             </v-col>
           </v-row>
