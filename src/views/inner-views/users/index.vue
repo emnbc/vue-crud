@@ -1,22 +1,35 @@
 <template>
-    <v-data-table   :headers="headers"
-                    :items="users"
-                    :server-items-length="total"
-                    :loading="loadingPage"
-                    :options.sync="pagination"
-                    class="elevation-1">
-    </v-data-table>
+    <div>
+        <div class="mb-4">
+            <v-btn @click="createUser()" color="primary">
+                Create
+            </v-btn>
+            <v-btn @click="fetchData()" class="ml-4">
+                Update
+            </v-btn>
+        </div>
+        <v-data-table   :headers="headers"
+                        :items="users"
+                        :server-items-length="total"
+                        :loading="loadingPage"
+                        :options.sync="pagination"
+                        class="elevation-1">
+        </v-data-table>
+        <user-modal :dialog="dialog" :close="closeUserModal" />
+    </div>
+
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { UsersModule } from '@/store/modules/users';
-import { DataOptions } from 'vuetify';
+import UserModal from './components/user-modal.vue'
 
-@Component
+@Component({ components: {'user-modal': UserModal}})
 export default class Users extends Vue {
 
     loadingPage = false;
+    dialog = false;
     pagination = {};
     headers = [
         { text: 'ID', align: 'start', value: 'id' },
@@ -35,6 +48,14 @@ export default class Users extends Vue {
     public updateOptions() {
         this.$store.commit('users/SET_PAGINATION', this.pagination);
         this.fetchData();
+    }
+
+    createUser() {
+        this.dialog = true;
+    }
+
+    closeUserModal() {
+        this.dialog = false;
     }
 
     get users() {

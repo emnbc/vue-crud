@@ -2,7 +2,7 @@ import { securityGuard } from '@/utils/auth'
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Main from '../views/Main.vue'
-import Users from '../views/inner-views/Users.vue'
+import Users from '../views/inner-views/users/index.vue'
 
 Vue.use(VueRouter)
 
@@ -23,7 +23,7 @@ const routes: Array<RouteConfig> = [
         path: '/about',
         name: 'About',
         meta: { authRequired: true },
-        component: () => import(/* webpackChunkName: "about" */ '../views/inner-views/About.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/inner-views/about/index.vue')
       },
     ]
   },
