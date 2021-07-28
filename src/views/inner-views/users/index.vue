@@ -5,7 +5,7 @@
                 Create
             </v-btn>
             <v-btn @click="fetchData()" class="ml-4">
-                Update
+                Refresh
             </v-btn>
         </div>
         <v-data-table   :headers="headers"
@@ -15,7 +15,7 @@
                         :options.sync="pagination"
                         class="elevation-1">
         </v-data-table>
-        <user-modal :dialog="dialog" :close="closeUserModal" />
+        <user-modal :dialog="dialog" :close="closeUserModal" :user="selectedUser" />
     </div>
 
 </template>
@@ -24,12 +24,14 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { UsersModule } from '@/store/modules/users';
 import UserModal from './components/user-modal.vue'
+import { User } from '@/models/user';
 
 @Component({ components: {'user-modal': UserModal}})
 export default class Users extends Vue {
 
     loadingPage = false;
     dialog = false;
+    selectedUser = new User({});
     pagination = {};
     headers = [
         { text: 'ID', align: 'start', value: 'id' },
@@ -51,6 +53,7 @@ export default class Users extends Vue {
     }
 
     createUser() {
+        this.selectedUser = new User({});
         this.dialog = true;
     }
 
