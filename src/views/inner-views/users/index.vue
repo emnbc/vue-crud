@@ -15,7 +15,7 @@
                         :options.sync="pagination"
                         class="elevation-1">
         </v-data-table>
-        <user-modal :dialog="dialog" :close="closeUserModal" :user="selectedUser" />
+        <user-modal :dialog="dialog" :hide="closeUserModal" :user="selectedUser" />
     </div>
 
 </template>

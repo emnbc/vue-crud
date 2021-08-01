@@ -2,6 +2,7 @@ export class User {
 
   id: number | null;
   username: string | null;
+  password: string | null;
   firstName: string | null;
   lastName: string | null;
   birthDate: string | null;
@@ -12,6 +13,7 @@ export class User {
   constructor({
     id = null,
     username = null,
+    password = null,
     firstName = null,
     lastName = null,
     birthDate = null,
@@ -21,6 +23,7 @@ export class User {
   }) {
     this.id = id;
     this.username = username;
+    this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
     this.birthDate = birthDate;
