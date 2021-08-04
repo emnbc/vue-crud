@@ -40,32 +40,35 @@ export default class Users extends Vue {
         { text: 'Last Name', value: 'lastName' }
     ];
 
-    async fetchData() {
+    async fetchData(): Promise<void> {
         this.loadingPage = true
         await this.$store.dispatch('users/FETCH_USERS');
         this.loadingPage = false;
     }
 
     @Watch('pagination', {deep: true})
-    public updateOptions() {
+    public updateOptions(): void {
         this.$store.commit('users/SET_PAGINATION', this.pagination);
         this.fetchData();
     }
 
-    createUser() {
+    createUser(): void {
         this.selectedUser = new User({});
         this.dialog = true;
     }
 
-    closeUserModal() {
+    closeUserModal(isUpdate: boolean): void {
         this.dialog = false;
+        if (isUpdate) {
+            this.fetchData();
+        }
     }
 
-    get users() {
+    get users(): never[] {
         return UsersModule.usersData;
     }
 
-    get total() {
+    get total(): number {
         return UsersModule.totalCount;
     }
  

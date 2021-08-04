@@ -74,7 +74,7 @@ export default class SignIn extends Vue {
       this.loadingLogin = false;
       this.loginError = 'Ошибка авторизации';
     });
-    }
+  }
  
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="dialog" @click:outside="hide()" max-width="480">
+    <v-dialog v-model="dialog" @click:outside="hide(false)" max-width="480">
       <v-card>
         <v-form @submit.prevent="submit">
 
@@ -62,7 +62,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn text @click="hide()">
+            <v-btn text @click="hide(false)">
               Cancel
             </v-btn>
 
@@ -82,6 +82,7 @@
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { UsersModule } from '@/store/modules/users';
 import { User } from '@/models/user';
+import request from '@/utils/request';
 
 @Component
 export default class UserModal extends Vue {
@@ -90,13 +91,17 @@ export default class UserModal extends Vue {
 
   @Prop() dialog!: boolean;
   @Prop() user!: User;
-  @Prop() hide!: () => void;
+  @Prop() hide!: (isRefrash: boolean) => void;
 
   submit() {
-    console.log(this.user);
-    this.hide();
+    request({
+      url: '/users',
+      method: 'post',
+      data: this.user
+    }).then(() => {
+      this.hide(true);
+    });
   }
-
 
 }
 </script>
