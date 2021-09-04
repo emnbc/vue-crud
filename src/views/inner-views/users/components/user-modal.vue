@@ -85,8 +85,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
-import { UsersModule } from '@/store/modules/users';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import { User } from '@/models/user';
 import request from '@/utils/request';
 
@@ -98,23 +97,23 @@ export default class UserModal extends Vue {
 
   validation = {
     firstName: [
-      (v: string) => !!v || 'First Name is required',
+      (v: string): boolean | string => !!v || 'First Name is required',
     ],
     lastName: [
-      (v: string) => !!v || 'Last Name is required',
+      (v: string): boolean | string => !!v || 'Last Name is required',
     ],
     birthDate: [
-      (v: string) => !!v || 'Birth Date is required',
+      (v: string): boolean | string => !!v || 'Birth Date is required',
     ],
     email: [
-      (v: string) => !!v || 'E-mail is required',
-      (v: string) => /.+@.+/.test(v) || 'E-mail must be valid',
+      (v: string): boolean | string => !!v || 'E-mail is required',
+      (v: string): boolean | string => /.+@.+/.test(v) || 'E-mail must be valid',
     ],
     username: [
-      (v: string) => !!v || 'Username is required',
+      (v: string): boolean | string => !!v || 'Username is required',
     ],
     password: [
-      (v: string) => !!v || 'Password is required',
+      (v: string): boolean | string => !!v || 'Password is required',
     ],
   };
 
@@ -122,7 +121,7 @@ export default class UserModal extends Vue {
   @Prop() user!: User;
   @Prop() hide!: (isRefrash: boolean) => void;
 
-  submit() {
+  submit(): void {
     if (this.formValid) {
       request({
         url: '/users',

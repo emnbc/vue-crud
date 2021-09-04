@@ -49,15 +49,16 @@ export default class Main extends Vue {
   logOut = logOut;
 
   itemList = [
-    { icon: 'mdi-view-dashboard', text: 'Home', link: '/users'},
+    { icon: 'mdi-home', text: 'Home', link: '/home'},
+    { icon: 'mdi-view-dashboard', text: 'Users', link: '/users'},
     { icon: 'mdi-cog', text: 'About', link: '/about'},
   ];
 
-  created () {
+  created(): void {
     this.$vuetify.theme.dark = false;
   }
 
-  toSignIn() {
+  toSignIn(): void {
     router.replace('/sign-in');
   }
 

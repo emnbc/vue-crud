@@ -12,8 +12,14 @@ const routes: Array<RouteConfig> = [
     name: 'Main',
     meta: { authRequired: true },
     component: Main,
-    redirect: '/users',
+    redirect: '/home',
     children: [
+      {
+        path: '/home',
+        name: 'Home',
+        meta: { authRequired: true },
+        component: () => import(/* webpackChunkName: "home" */ '../views/inner-views/home/index.vue')
+      },
       {
         path: '/users',
         component: Users,
