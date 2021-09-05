@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-app id="inspire">
+
       <v-navigation-drawer v-model="drawer" app clipped>
         <v-list dense>
           <v-list-item :to="item.link" v-for="(item, i) in itemList" :key="i" link>
@@ -34,7 +34,6 @@
       <v-footer color="blue-grey" app dark>
         <span>&copy; {{ new Date().getFullYear() }}</span>
       </v-footer>
-    </v-app>
   </v-app>
 </template>
 
