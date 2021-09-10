@@ -14,6 +14,14 @@
                         :loading="loadingPage"
                         :options.sync="pagination"
                         class="elevation-1">
+            <template v-slot:[`item.action`]="{ item }">
+                <v-btn plain color="primary" @click="editUser(item)">
+                    <v-icon left>
+                        mdi-pencil
+                    </v-icon>
+                    Edit
+                </v-btn>
+            </template>
         </v-data-table>
         <user-modal :dialog="dialog" :hide="closeUserModal" :user="selectedUser" />
     </div>
@@ -37,7 +45,8 @@ export default class Users extends Vue {
         { text: 'ID', align: 'start', value: 'id' },
         { text: 'Username', value: 'username' },
         { text: 'First Name', value: 'firstName' },
-        { text: 'Last Name', value: 'lastName' }
+        { text: 'Last Name', value: 'lastName' },
+        { text: '', value: 'action' }
     ];
 
     async fetchData(): Promise<void> {
@@ -55,6 +64,10 @@ export default class Users extends Vue {
     createUser(): void {
         this.selectedUser = new User({});
         this.dialog = true;
+    }
+
+    editUser(user: User): void {
+        console.log(user);
     }
 
     closeUserModal(isUpdate: boolean): void {
