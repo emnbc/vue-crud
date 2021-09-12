@@ -10,26 +10,20 @@ export class User {
   avatar: string | null;
   isActive: boolean | null;
 
-  constructor({
-    id = null,
-    username = null,
-    password = null,
-    firstName = null,
-    lastName = null,
-    birthDate = null,
-    email = null,
-    avatar = null,
-    isActive = null,
-  }) {
-    this.id = id;
-    this.username = username;
-    this.password = password;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.birthDate = birthDate;
-    this.email = email;
-    this.avatar = avatar;
-    this.isActive = isActive;
+  constructor(obj?: User) {
+    this.id = obj ? obj.id : null;
+    this.username = obj ? obj.username : null;
+    this.password = obj ? obj.password : null;
+    this.firstName = obj ? obj.firstName : null;
+    this.lastName = obj ? obj.lastName : null;
+    this.birthDate = obj ? this.trimDate(obj.birthDate) : null;
+    this.email = obj ? obj.email : null;
+    this.avatar = obj ? obj.avatar : null;
+    this.isActive = obj ? obj.isActive : null;
+  }
+
+  private trimDate(date: string | null): string | null {
+    return date ? date.substr(0, 10) : null;
   }
 
 }

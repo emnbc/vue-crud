@@ -12,7 +12,7 @@ export interface IAuthState {
 class Auth extends VuexModule implements IAuthState {
 
   token = '';
-  user = new User({});
+  user = new User();
 
   @Mutation
   SET_TOKEN(token: string) {
@@ -32,7 +32,7 @@ class Auth extends VuexModule implements IAuthState {
   @Mutation
   CLEAR_AUTH() {
     this.token = '';
-    this.user = new User({});
+    this.user = new User();
   }
 }
 

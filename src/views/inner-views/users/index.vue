@@ -39,14 +39,14 @@ export default class Users extends Vue {
 
     loadingPage = false;
     dialog = false;
-    selectedUser = new User({});
+    selectedUser = new User();
     pagination = {};
     headers = [
         { text: 'ID', align: 'start', value: 'id' },
         { text: 'Username', value: 'username' },
         { text: 'First Name', value: 'firstName' },
         { text: 'Last Name', value: 'lastName' },
-        { text: '', value: 'action' }
+        { text: '', value: 'action', align: 'right' }
     ];
 
     async fetchData(): Promise<void> {
@@ -62,12 +62,13 @@ export default class Users extends Vue {
     }
 
     createUser(): void {
-        this.selectedUser = new User({});
+        this.selectedUser = new User();
         this.dialog = true;
     }
 
     editUser(user: User): void {
-        console.log(user);
+        this.selectedUser = new User(user);
+        this.dialog = true;
     }
 
     closeUserModal(isUpdate: boolean): void {

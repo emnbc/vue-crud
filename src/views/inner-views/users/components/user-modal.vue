@@ -1,11 +1,11 @@
 <template>
-    <v-dialog v-model="dialog" @click:outside="hide(false)" max-width="480">
+    <v-dialog v-model="dialog" @click:outside="close(false)" max-width="480">
       <v-card>
-        <v-form @submit.prevent="submit" v-model="formValid">
+        <v-form @submit.prevent="submit" v-model="formValid" ref="formRef">
 
           <v-card-title class="text-h5">
-            <span v-if="user.id">Edit User</span>
-            <span v-if="!user.id">Create User</span>
+            <span v-if="isUpdate">Edit User</span>
+            <span v-if="!isUpdate">Create User</span>
           </v-card-title>
 
           <v-card-text>
@@ -54,9 +54,11 @@
                               :rules="validation.username"
                               type="text"
                               v-model="user.username"
+                              :disabled="isUpdate"
                               autocomplete="off"></v-text-field>
 
-                <v-text-field label="Password"
+                <v-text-field v-if="!isUpdate"
+                              label="Password"
                               name="password"
                               :rules="validation.password"
                               type="password"
@@ -68,13 +70,13 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn text @click="hide(false)">
+            <v-btn text @click="close(false)">
               Cancel
             </v-btn>
 
             <v-btn text type="submit">
-              <span v-if="user.id">Edit</span>
-              <span v-if="!user.id">Create</span>
+              <span v-if="isUpdate">Edit</span>
+              <span v-if="!isUpdate">Create</span>
             </v-btn>
           </v-card-actions>
 
@@ -123,14 +125,24 @@ export default class UserModal extends Vue {
 
   submit(): void {
     if (this.formValid) {
+      const { username, password, ...other } = this.user;
       request({
-        url: '/users',
-        method: 'post',
-        data: this.user
+        url: this.isUpdate ? '/users/' + this.user.id : '/users',
+        method: this.isUpdate ? 'put' : 'post',
+        data: this.isUpdate ? other : this.user
       }).then(() => {
-        this.hide(true);
+        this.close(true);
       });
     }
+  }
+
+  close(isRefrash: boolean) {
+    (this.$refs.formRef as any).reset();
+    this.hide(isRefrash);
+  }
+
+  get isUpdate(): boolean {
+    return !!this.user.id;
   }
 
 }
