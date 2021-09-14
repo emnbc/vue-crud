@@ -11,18 +11,31 @@
               <v-list-item-title>{{item.text}}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-divider inset class="mt-2"></v-divider>
+          <v-subheader inset>Information</v-subheader>
+          <v-list-item to="/about" link>
+            <v-list-item-action>
+              <v-icon>mdi-cog</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>About</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
       </v-navigation-drawer>
-  
+
       <v-app-bar app clipped-left color="blue-grey" dark>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Application</v-toolbar-title>
         <v-spacer></v-spacer>
+        <v-btn class="ma-2" text icon>
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
         <v-btn @click="logOut()" icon>
           <v-icon>mdi-export</v-icon>
         </v-btn>
       </v-app-bar>
-  
+
       <v-main>
         <v-container class="pa-4" fluid>
 
@@ -50,7 +63,6 @@ export default class Main extends Vue {
   itemList = [
     { icon: 'mdi-home', text: 'Home', link: '/home'},
     { icon: 'mdi-view-dashboard', text: 'Users', link: '/users'},
-    { icon: 'mdi-cog', text: 'About', link: '/about'},
   ];
 
   created(): void {
