@@ -1,23 +1,26 @@
 <template>
     <v-navigation-drawer v-model="drawer" app clipped>
         <v-list dense>
+
             <v-list-item :to="item.link" v-for="(item, i) in itemList" :key="i" link>
-            <v-list-item-action>
-                <v-icon>{{item.icon}}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-                <v-list-item-title>{{item.text}}</v-list-item-title>
-            </v-list-item-content>
+                <v-list-item-action>
+                    <v-icon>{{item.icon}}</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                    <v-list-item-title>{{item.text}}</v-list-item-title>
+                </v-list-item-content>
             </v-list-item>
-            <v-divider inset class="mt-2"></v-divider>
-            <v-subheader inset>Information</v-subheader>
+        </v-list>
+            <v-divider class="mt-2"></v-divider>
+        <v-list dense>
+            <v-subheader class="ml-2">Information</v-subheader>
             <v-list-item to="/about" link>
-            <v-list-item-action>
-                <v-icon>mdi-cog</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-                <v-list-item-title>About</v-list-item-title>
-            </v-list-item-content>
+                <v-list-item-action>
+                    <v-icon>mdi-cog</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                    <v-list-item-title>About</v-list-item-title>
+                </v-list-item-content>
             </v-list-item>
         </v-list>
     </v-navigation-drawer>
