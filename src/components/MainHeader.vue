@@ -3,24 +3,36 @@
         <v-app-bar-nav-icon @click.stop="toggleMenu()"></v-app-bar-nav-icon>
         <v-toolbar-title>Application</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn class="ma-2" text icon>
+        <v-btn @click="openProfile" class="ma-2" text icon>
             <v-icon>mdi-account</v-icon>
         </v-btn>
         <v-btn @click="logOut()" icon>
             <v-icon>mdi-export</v-icon>
         </v-btn>
+        <profile-modal :dialog="dialog" :close="closeProfile" />
     </v-app-bar>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import ProfileModal from './ProfileModal.vue';
 import { logOut } from '../utils/auth';
 
-@Component
+@Component({components: {'profile-modal': ProfileModal}})
 export default class MainHeader extends Vue {
-@Prop() toggleMenu!: () => void;
 
-logOut = logOut;
+    @Prop() toggleMenu!: () => void;
+
+    dialog = false;
+    logOut = logOut;
+
+    closeProfile(): void {
+        this.dialog = false;
+    }
+
+    openProfile(): void {
+        this.dialog = true;
+    }
 
 }
 </script>
