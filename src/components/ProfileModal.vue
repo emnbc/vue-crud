@@ -3,12 +3,12 @@
     <v-card>
 
       <v-card-title class="text-h5">
-        
+        Profile
       </v-card-title>
 
       <v-card-text>
 
-        Profile page
+        <div class="profile-img" :style="`background-image: url(${hasAvatar ? 'uploads/' + user.avatar : 'img/no-avatar.png'});`"></div>
 
       </v-card-text>
 
@@ -27,6 +27,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import { AuthModule } from '@/store/modules/auth';
+import { User } from '@/models/user';
 
 @Component
 export default class ProfileModal extends Vue {
@@ -34,9 +36,23 @@ export default class ProfileModal extends Vue {
   @Prop() dialog!: boolean;
   @Prop() close!: () => void;
 
+  get user(): User {
+    return AuthModule.user;
+  }
+
+  get hasAvatar() {
+    return !!this.user.avatar;
+  }
+
 }
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-
+.profile-img {
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 </style>

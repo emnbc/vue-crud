@@ -8,7 +8,12 @@ module.exports = {
             target: 'http://nest-angular.emnbc.com',
             changeOrigin: true,
             logLevel: 'debug'
-        }
+        },
+        '^/uploads': {
+          target: 'http://nest-angular.emnbc.com',
+          changeOrigin: true,
+          logLevel: 'debug'
+      }
     }
   }
 }
