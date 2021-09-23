@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" @click:outside="close()" max-width="480">
+  <v-dialog v-model="dialog" @click:outside="close()" max-width="640">
     <v-card>
 
       <v-card-title class="text-h5">
@@ -8,7 +8,17 @@
 
       <v-card-text>
 
-        <div class="profile-img" :style="`background-image: url(${hasAvatar ? 'uploads/' + user.avatar : 'img/no-avatar.png'});`"></div>
+        <div class="profile-container">
+          <div class="profile-container__avatar">
+            <div class="profile-container__img" :style="`background-image: url(${hasAvatar ? 'uploads/' + user.avatar : 'img/no-avatar.png'});`"></div>
+          </div>
+          <div class="profile-container__info">
+            <h3>Informatin</h3>
+            <v-divider class="my-2"></v-divider>
+
+            First Name
+          </div>
+        </div>
 
       </v-card-text>
 
@@ -48,11 +58,39 @@ export default class ProfileModal extends Vue {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.profile-img {
-  width: 300px;
-  height: 300px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+
+.profile-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__avatar {
+    flex: 0 0 200px;
+
+    @media screen and (max-width: 600px) {
+      flex: 0 0 100%;
+    }
+  }
+
+  &__info {
+    flex: 1 1 auto;
+    padding-left: 16px;
+
+    @media screen and (max-width: 600px) {
+      flex: 0 0 100%;
+      padding-left: 0;
+      padding-top: 16px;
+    }
+  }
+
+  &__img {
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    margin: 0 auto;
+  }
 }
+
 </style>
