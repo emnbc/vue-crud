@@ -6,17 +6,47 @@
         Profile
       </v-card-title>
 
-      <v-card-text>
+      <v-card-text class="pb-12">
 
         <div class="profile-container">
           <div class="profile-container__avatar">
             <div class="profile-container__img" :style="`background-image: url(${hasAvatar ? 'uploads/' + user.avatar : 'img/no-avatar.png'});`"></div>
           </div>
           <div class="profile-container__info">
-            <h3>Informatin</h3>
+            <h3>Information</h3>
             <v-divider class="my-2"></v-divider>
 
-            First Name
+            <div>
+              <div class="profile-container__row">
+                <div class="profile-container__row_name">First Name</div>
+                <div class="profile-container__row_val">{{user.firstName}}</div>
+              </div>
+
+              <div class="profile-container__row">
+                <div class="profile-container__row_name">Last Name</div>
+                <div class="profile-container__row_val">{{user.lastName}}</div>
+              </div>
+
+              <div class="profile-container__row">
+                <div class="profile-container__row_name">Birth Date</div>
+                <div class="profile-container__row_val">{{user.birthDate}}</div>
+              </div>
+            </div>
+
+            <v-divider class="my-4"></v-divider>
+
+            <div>
+              <div class="profile-container__row">
+                <div class="profile-container__row_name">Username</div>
+                <div class="profile-container__row_val">{{user.username}}</div>
+              </div>
+
+              <div class="profile-container__row">
+                <div class="profile-container__row_name">E-mail</div>
+                <div class="profile-container__row_val">{{user.email}}</div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -82,12 +112,36 @@ export default class ProfileModal extends Vue {
     }
   }
 
+  &__row {
+    display: flex;
+    justify-content: space-between;
+
+    &_name {
+      flex: 0 0 140px;
+    }
+
+    &_val {
+      flex: 1 1 auto;
+      text-align: end;
+      overflow: auto;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+
   &__img {
     width: 200px;
     height: 200px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+
+    @media screen and (max-width: 600px) {
+      width: 150px;
+      height: 150px;
+    }
 
     margin: 0 auto;
   }

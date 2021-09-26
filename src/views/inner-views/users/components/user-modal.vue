@@ -23,7 +23,7 @@
                               type="text"
                               v-model="user.lastName"
                               autocomplete="off"></v-text-field>
-                
+
                 <v-menu v-model="datepicker"
                         :close-on-content-click="false"
                         :nudge-right="40"
@@ -48,7 +48,7 @@
                               type="text"
                               v-model="user.email"
                               autocomplete="off"></v-text-field>
-                
+
                 <v-text-field label="Username"
                               name="username"
                               :rules="validation.username"

@@ -16,7 +16,7 @@
             <v-subheader class="ml-2">Information</v-subheader>
             <v-list-item to="/about" link>
                 <v-list-item-action>
-                    <v-icon>mdi-cog</v-icon>
+                    <v-icon>mdi-information</v-icon>
                 </v-list-item-action>
                 <v-list-item-content>
                     <v-list-item-title>About</v-list-item-title>
