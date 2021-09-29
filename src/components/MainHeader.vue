@@ -1,7 +1,7 @@
 <template>
     <v-app-bar app clipped-left color="blue-grey" dark>
         <v-app-bar-nav-icon @click.stop="toggleMenu()"></v-app-bar-nav-icon>
-        <v-toolbar-title>Application</v-toolbar-title>
+        <v-toolbar-title>Nest Vue</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn @click="openProfile" class="ma-2" text icon>
             <v-icon>mdi-account</v-icon>
